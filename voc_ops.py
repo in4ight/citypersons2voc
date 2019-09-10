@@ -303,15 +303,15 @@ class voc_formatter():
             if enable_filter:
                 keep_inds, dropped_num = self.__filter(vec)
                 total_dropped += dropped_num
-                if keep_inds.size == 0: continue
+                if keep_inds.size == 0:
+                    continue
                 vec = vec[keep_inds, :]
 
             total_gt_num += vec.shape[0]
             if self.handle_ignore:
-                vec = np.vstack((vec,ign_vec))
+                vec = np.vstack((vec, ign_vec))
             # format bbs: 10-d to 5-d
             bbs = vec[:, [0, 1, 2, 3, 4]]
-
 
             # xywh to xyxy
             bbs[:, 3] += bbs[:, 1] - 1  # adding -1
